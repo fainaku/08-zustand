@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Error = ({ error }: Props) => {
-  return <p>Could not fetch note details. {error.message}</p>;
+  return <p>Could not fetch the list of notes. {error.message}</p>;
 };
 
 export default Error;
