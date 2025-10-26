@@ -17,14 +17,25 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${
   process.env.NEXT_PUBLIC_NOTEHUB_TOKEN
 }`;
 
-export const fetchNotes = async (
-  search: string,
-  page: number,
-  perPage: number
-): Promise<FetchNotesResponse> => {
-  const { data } = await axios.get<FetchNotesResponse>(
-    `/notes?search=${search}&page=${page}&perPage=${perPage}`
-  );
+export const fetchNotes = async ({
+  search,
+  page = 1,
+  perPage = 12,
+  tag,
+}: {
+  search?: string;
+  page?: number;
+  perPage?: number;
+  tag?: string;
+}): Promise<FetchNotesResponse> => {
+  const { data } = await axios.get<FetchNotesResponse>("/notes", {
+    params: {
+      search,
+      page,
+      perPage,
+      tag,
+    },
+  });
   return data;
 };
 

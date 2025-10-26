@@ -3,7 +3,6 @@ import css from "./page.module.css";
 import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
-import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import { Toaster } from "react-hot-toast";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
@@ -14,8 +13,14 @@ import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
 import { fetchNotes } from "@/lib/api";
 import { useDebouncedCallback } from "use-debounce";
+import { NoteTag } from "@/types/note";
+import Modal from "@/components/Modal/Modal";
 
-const NotesClient = () => {
+interface NotesClientProps {
+  tag?: NoteTag;
+}
+
+const NotesClient = ({ tag }: NotesClientProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>("");
@@ -31,7 +36,7 @@ const NotesClient = () => {
 
   const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ["notes", page, search, perPage],
-    queryFn: () => fetchNotes(search, page, perPage),
+    queryFn: () => fetchNotes({ search, page, perPage, tag }),
     retry: 3,
     placeholderData: keepPreviousData,
   });

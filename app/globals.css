@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
@@ -11,4 +16,8 @@ body {
 
 main {
   flex: auto;
+}
+
+* {
+  box-sizing: border-box;
 }
