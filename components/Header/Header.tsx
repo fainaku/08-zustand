@@ -15,6 +15,11 @@ const Header = () => {
               Home
             </Link>
           </li>
+          <li className={css.navigationItem}>
+            <Link href="/notes/filter/All" className={css.navigationLink}>
+              Notes
+            </Link>
+          </li>
         </ul>
       </nav>
       <TagsMenu />
