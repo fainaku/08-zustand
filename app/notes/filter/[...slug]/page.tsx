@@ -8,14 +8,14 @@ import NotesClient from "./Notes.client";
 import { NoteTag } from "@/types/note";
 
 interface NotesPageProps {
-  params: Promise<{ slug: [NoteTag | "All"] }>;
+  params: Promise<{ slug: [NoteTag | "all"] }>;
 }
 
 const NotesPage = async ({ params }: NotesPageProps) => {
   const queryClient = new QueryClient();
 
   const { slug } = await params;
-  const tag = slug[0] === "All" ? undefined : slug[0];
+  const tag = slug[0] === "all" ? undefined : slug[0];
 
   await queryClient.prefetchQuery({
     queryKey: ["notes", tag],

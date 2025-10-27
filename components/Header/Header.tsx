@@ -1,4 +1,3 @@
-import TagsMenu from "../TagsMenu/TagsMenu";
 import css from "./Header.module.css";
 import Link from "next/link";
 const Header = () => {
@@ -16,13 +15,12 @@ const Header = () => {
             </Link>
           </li>
           <li className={css.navigationItem}>
-            <Link href="/notes/filter/All" className={css.navigationLink}>
+            <Link href="/notes/filter/all" className={css.navigationLink}>
               Notes
             </Link>
           </li>
         </ul>
       </nav>
-      <TagsMenu />
     </header>
   );
 };
