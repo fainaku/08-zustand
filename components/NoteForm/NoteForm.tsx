@@ -19,7 +19,6 @@ export default function NoteForm() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    console.log(event.target.name, event.target.value);
     setDraft({
       ...draft,
       [event.target.name]: event.target.value,
