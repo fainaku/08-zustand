@@ -1,13 +1,12 @@
 "use client";
 
 import css from "./NoteForm.module.css";
-import { useId, useState } from "react";
-
 import toast from "react-hot-toast";
 import { createNote, NewNoteData } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
 import { useMutation } from "@tanstack/react-query";
+import { useId } from "react";
 
 export default function NoteForm() {
   const router = useRouter();
