@@ -1,3 +1,7 @@
 import SidebarNotes from "@/components/SidebarNotes/SidebarNotes";
 
-export default SidebarNotes;
+const SidebarNotesPage = () => {
+  return <SidebarNotes />;
+};
+
+export default SidebarNotesPage;

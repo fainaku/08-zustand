@@ -3,7 +3,7 @@ import css from "./page.module.css";
 import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
-import NoteForm from "@/components/NoteForm/NoteForm";
+
 import { Toaster } from "react-hot-toast";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -14,14 +14,12 @@ import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import { fetchNotes } from "@/lib/api";
 import { useDebouncedCallback } from "use-debounce";
 import { NoteTag } from "@/types/note";
-import Modal from "@/components/Modal/Modal";
 
 interface NotesClientProps {
   tag?: NoteTag;
 }
 
 const NotesClient = ({ tag }: NotesClientProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>("");
   const [perPage] = useState<number>(12);
@@ -43,9 +41,6 @@ const NotesClient = ({ tag }: NotesClientProps) => {
 
   const notes = data?.notes || [];
   const totalPages = data?.totalPages || 0;
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -82,14 +77,6 @@ const NotesClient = ({ tag }: NotesClientProps) => {
               page={page}
               onPageChange={(newPage) => setPage(newPage)}
             />
-          )}
-          <button onClick={openModal} className={css.button}>
-            Create note +
-          </button>
-          {isModalOpen && (
-            <Modal onClose={closeModal}>
-              <NoteForm onCancel={closeModal} />
-            </Modal>
           )}
         </header>
 

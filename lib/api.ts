@@ -1,6 +1,12 @@
 import axios from "axios";
 import type { Note, NoteTag } from "../types/note";
 
+export interface NewNoteData {
+  title: string;
+  content: string;
+  tag: NoteTag;
+}
+
 export interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;

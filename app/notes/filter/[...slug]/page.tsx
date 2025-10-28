@@ -11,6 +11,30 @@ interface NotesPageProps {
   params: Promise<{ slug: [NoteTag | "all"] }>;
 }
 
+export async function generateMetadata({ params }: NotesPageProps) {
+  const { slug } = await params;
+  const tag = slug[0];
+  return {
+    title: `Notes with ${tag} tags`,
+    description: `Notes with your ${tag} tags here`,
+    openGraph: {
+      title: `Notes with ${tag} tags`,
+      description: `Notes with your ${tag} tags here`,
+      url: `https://08-zustand-seven-snowy.vercel.app/notes/filter/${tag}`,
+      siteName: "NoteHub",
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: "note title",
+        },
+      ],
+      type: "article",
+    },
+  };
+}
+
 const NotesPage = async ({ params }: NotesPageProps) => {
   const queryClient = new QueryClient();
 
